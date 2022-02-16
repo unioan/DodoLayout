@@ -11,11 +11,9 @@ class ViewController: UIViewController {
     
     enum SectionKind: Int, CaseIterable {
         case baner
-        case category
         case item
     }
     
-    var count = 3
     
     let bannerArray = Array(1...20)
     let categoryArray = Array(21...40)
@@ -43,7 +41,6 @@ class ViewController: UIViewController {
         
         //register cell
         collectionView.register(BanerCell.self, forCellWithReuseIdentifier: BanerCell.reuseIdentifier)
-        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: ItemCell.reuseIdentifier)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
     }
@@ -62,40 +59,24 @@ class ViewController: UIViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let itemSpacing: CGFloat = 10 // items отступят со всех краев 5 поинтов
-                item.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: 18, bottom: itemSpacing, trailing: 0)
+                item.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: 0, bottom: itemSpacing, trailing: 20)
                 
                 // GROUP
-                let banerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.2))
+                let banerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.18))
                 let banerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: banerGroupSize, subitem: item, count: 1)
                 
                 // SECTION
                 let section = NSCollectionLayoutSection(group: banerGroup)
-                section.orthogonalScrollingBehavior = .continuous
-                return section
-                
-            case .category:
-                // ITEM
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let itemSpacing: CGFloat = 10 // items отступят со всех краев 5 поинтов
-                item.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: 18, bottom: itemSpacing, trailing: -10)
-
-                // GROUP
-                let categoryGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(0.07))
-                let categoryGroup = NSCollectionLayoutGroup.horizontal(layoutSize: categoryGroupSize, subitem: item, count: 1)
-
-                // SECTION
-                let section = NSCollectionLayoutSection(group: categoryGroup)
+                section.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: 18, bottom: itemSpacing, trailing: 0)
                 section.orthogonalScrollingBehavior = .continuous
                 return section
                 
             case .item:
                 // ITEM
-                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let itemSpacing: CGFloat = 10 // items отступят со всех краев 5 поинтов
-                item.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: 0, bottom: 10, trailing: 0)
+                item.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: 0, bottom: itemSpacing, trailing: 0)
                 
                 // GROUP
                 let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
@@ -103,8 +84,11 @@ class ViewController: UIViewController {
                 
                 // SECTION
                 let section = NSCollectionLayoutSection(group: itemGroup)
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
+                
+                // HEADER
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(68))
                 let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                header.contentInsets =  NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
                 section.boundarySupplementaryItems = [header]
                 header.pinToVisibleBounds = true
                 return section
@@ -123,7 +107,7 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return count
+        return SectionKind.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -131,8 +115,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         switch sectionKind {
         case .baner:
             return bannerArray.count
-        case .category:
-            return categoryArray.count
         case .item:
             return itemsArray.count
         }
@@ -147,11 +129,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BanerCell.reuseIdentifier, for: indexPath) as! BanerCell
             cell.textLabel.text = "\(bannerArray[indexPath.row])"
             cell.backgroundColor = .systemRed
-            return cell
-        case .category:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
-            cell.textLabel.text = "\(categoryArray[indexPath.row])"
-            cell.backgroundColor = .systemOrange
             return cell
         case .item:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCell.reuseIdentifier, for: indexPath) as! ItemCell
