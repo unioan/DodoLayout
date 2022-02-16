@@ -13,10 +13,11 @@ class CollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    print("DEBUG: I have been initialized!")
+    
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("DEBUG: I have been initialized!")
         return 10
     }
     
@@ -27,7 +28,7 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG: TAPPED!")
+        print("DEBUG: TAPPED \(indexPath.row) cell!")
     }
     
     

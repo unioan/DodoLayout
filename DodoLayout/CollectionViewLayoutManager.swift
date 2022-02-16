@@ -12,17 +12,21 @@ class CollectionViewLayoutManager {
     static func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnviroment -> NSCollectionLayoutSection? in
             
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.02), heightDimension: .fractionalHeight(1.0))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let itemSpacing: CGFloat = 2 // items отступят со всех краев 5 поинтов
-            item.contentInsets = NSDirectionalEdgeInsets(top: itemSpacing, leading: itemSpacing, bottom: itemSpacing, trailing: itemSpacing)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 5, bottom: 1, trailing: 5)
             
-            // GROUP
-            let categoryGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(600), heightDimension: .fractionalHeight(1.0))
-            let categoryGroup = NSCollectionLayoutGroup.horizontal(layoutSize: categoryGroupSize, subitem: item, count: 1)
+             //GROUP
+            let innerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1.0))
+            let innerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: innerGroupSize, subitem: item, count: 1)
+            
+            
+            let categoryGroupSize = NSCollectionLayoutSize(widthDimension: .absolute(460), heightDimension: .fractionalHeight(1.0))
+            let categoryGroup = NSCollectionLayoutGroup.horizontal(layoutSize: categoryGroupSize, subitems: [innerGroup])
             
             // SECTION
             let section = NSCollectionLayoutSection(group: categoryGroup)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 18, bottom: 1, trailing: 0)
             section.orthogonalScrollingBehavior = .continuous
             return section
             
