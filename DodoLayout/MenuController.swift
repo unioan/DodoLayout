@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MenuController: UIViewController {
     
     enum SectionKind: Int, CaseIterable {
         case baner
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return SectionKind.allCases.count
