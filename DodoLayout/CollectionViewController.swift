@@ -10,12 +10,10 @@ import UIKit
 
 class CollectionViewController: UICollectionViewController {
     
-    let headerView = HeaderView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = headerView
-        
+    print("DEBUG: I have been initialized!")
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -23,11 +21,14 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCategory.reuseIdentifier, for: indexPath) as! ItemCategory
         cell.backgroundColor = .systemRed
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("DEBUG: TAPPED!")
+    }
     
     
 }

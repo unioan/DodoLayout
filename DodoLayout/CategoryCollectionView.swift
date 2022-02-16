@@ -12,7 +12,7 @@ class CategoriesCollectionView: UICollectionView {
     
     init() {
         super.init(frame: CGRect(), collectionViewLayout: CollectionViewLayoutManager.createLayout())
-        register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
+        register(ItemCategory.self, forCellWithReuseIdentifier: ItemCategory.reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {

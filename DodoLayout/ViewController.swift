@@ -91,6 +91,7 @@ class ViewController: UIViewController {
                 
             case .item:
                 // ITEM
+                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let itemSpacing: CGFloat = 10 // items отступят со всех краев 5 поинтов
@@ -165,6 +166,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as! HeaderView
+        let controller = CollectionViewController()
+        cell.controller = controller
         
         return cell
     }
