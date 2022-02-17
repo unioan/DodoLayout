@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithDefaultBackground()
-        navigationBarAppearance.backgroundColor = .systemYellow
+        navigationBarAppearance.backgroundColor = .systemGroupedBackground
         navigationBarAppearance.shadowColor = nil
     
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance

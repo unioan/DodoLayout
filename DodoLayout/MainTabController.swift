@@ -43,7 +43,6 @@ class MainTabController: UITabBarController {
         
         nav.tabBarItem.image = image
         nav.tabBarItem.title = title
-        nav.navigationBar.tintColor = .black
         
         return nav
     }

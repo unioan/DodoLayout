@@ -32,6 +32,7 @@ class BanerCell: UICollectionViewCell {
     }
     
     private func textLabelConstraints() {
+        
         addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -30,7 +30,7 @@ class MenuController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+        collectionView.backgroundColor = .systemGroupedBackground
     }
     
 
@@ -43,6 +43,7 @@ class MenuController: UIViewController {
         collectionView.register(BanerCell.self, forCellWithReuseIdentifier: BanerCell.reuseIdentifier)
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: ItemCell.reuseIdentifier)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
+        collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.reuseIdentifier)
     }
     
     
@@ -82,17 +83,22 @@ class MenuController: UIViewController {
                 let itemGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
                 let itemGroup = NSCollectionLayoutGroup.vertical(layoutSize: itemGroupSize, subitem: item, count: 1)
                 
-                // SECTION
-                let section = NSCollectionLayoutSection(group: itemGroup)
-                
                 // HEADER
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(68))
                 let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
                 header.contentInsets =  NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
-                section.boundarySupplementaryItems = [header]
                 header.pinToVisibleBounds = true
+                // FOOTER
+                let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(10))
+                let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .leading)
+                
+                // SECTION
+                let section = NSCollectionLayoutSection(group: itemGroup)
+                section.boundarySupplementaryItems = [header]
+                
                 return section
                 
+              
             }
             
             
@@ -133,7 +139,7 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         case .item:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCell.reuseIdentifier, for: indexPath) as! ItemCell
             cell.textLabel.text = "\(itemsArray[indexPath.row])"
-            cell.backgroundColor = .systemYellow
+            cell.backgroundColor = .white
             return cell
         }
     
@@ -142,12 +148,26 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
     
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as! HeaderView
-        let controller = CollectionViewController()
-        cell.controller = controller
         
-        return cell
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as! HeaderView
+            let controller = CollectionViewController()
+            header.controller = controller
+            print("DEBUG: Header has been configured")
+            return header
+        case UICollectionView.elementKindSectionFooter:
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterView.reuseIdentifier, for: indexPath) as! FooterView
+            print("DEBUG: Footer has been configured")
+            return footer
+        default:
+            return UICollectionReusableView()
+        }
+        
+        
     }
+    
+    
     
    
     

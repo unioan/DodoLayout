@@ -46,7 +46,7 @@ class HeaderView: UICollectionReusableView {
         
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemIndigo // collection view появляется но почему то не грузятся фотки
+        collectionView.backgroundColor = .systemGroupedBackground // collection view появляется но почему то не грузятся фотки
         NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: topAnchor), // констрейнты работают
                                      collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
                                      collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
