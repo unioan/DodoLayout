@@ -10,44 +10,34 @@ import UIKit
 class HeaderView: UICollectionReusableView {
     static let reuseIdentifier = "headerView"
     
-    var collectionView: UICollectionView = CategoriesCollectionView()
-    var controller: CollectionViewController? {
-        didSet {
-            collectionView.delegate = controller
-            collectionView.dataSource = controller
-        }
-    }
+    // MARK: Properties
+    var categoriesCollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: LayoutManger.createCategoryControllerCollectionLayout())
     
-    public lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        return label
-    }()
     
+    // MARK: Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        categoriesCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
+        categoriesCollectionView.dataSource = self
+        categoriesCollectionView.delegate = self
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
     }
     
-    private func commonInit() {
-        setupLabelConstraints()
-    }
     
-    private func setupLabelConstraints() {
-        
-        addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemGroupedBackground // collection view появляется но почему то не грузятся фотки
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: topAnchor), // констрейнты работают
-                                     collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                                     collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                                     collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+    // MARK: Helpers
+    private func setupConstraints() {
+    
+        addSubview(categoriesCollectionView)
+        categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        categoriesCollectionView.backgroundColor = .systemGroupedBackground
+        NSLayoutConstraint.activate([categoriesCollectionView.topAnchor.constraint(equalTo: topAnchor),
+                                     categoriesCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                                     categoriesCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                                     categoriesCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
     }
@@ -55,3 +45,27 @@ class HeaderView: UICollectionReusableView {
 }
 
 
+
+// MARK: - UICollectionViewDelegate & UICollectionViewDataSource
+extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // MARK: NumberOfItemsInSection
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    // MARK: CellForItem
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
+        cell.textLabel.text = ("\(indexPath.row)")
+        cell.backgroundColor = .systemRed
+        return cell
+    }
+    
+    // MARK: ItemSelected
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("DEBUG: TAPPED in Header view \(indexPath.row) cell!")
+    }
+    
+    
+}
