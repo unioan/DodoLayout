@@ -25,9 +25,6 @@ class HeaderView: UICollectionReusableView {
         return label
     }()
     
-    // Наверное нужно написать делегат
-    // так как мы нигде не сеттим делегат при вызовеHeaderView внутри контроллера
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

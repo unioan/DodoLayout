@@ -9,16 +9,14 @@ import UIKit
 
 class CategoriesCollectionView: UICollectionView {
 
-    
     init() {
-        super.init(frame: CGRect(), collectionViewLayout: CollectionViewLayoutManager.createLayout())
+        super.init(frame: CGRect(), collectionViewLayout: LayoutManger.createCategoryControllerCollectionLayout())
         register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
 }
 

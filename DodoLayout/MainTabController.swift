@@ -10,32 +10,51 @@ import UIKit
 
 class MainTabController: UITabBarController {
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureViewControllers()
-        
-      
+    // MARK: Properties
+    var presenter: MainTabPresenterProtocol! {
+        didSet { configureViewControllers() }
     }
     
     
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+        setViews()
+    }
+    
+    
+    // MARK: Helpers
+    func setViews() {
+        view.backgroundColor = .white
+        tabBar.tintColor = .systemOrange
+    }
     
     func configureViewControllers() {
-        view.backgroundColor = .white
         
-        self.delegate = self
+        var tabControllers = [UINavigationController]()
+        guard let presenter = presenter else { return }
         
-        let menu = tamplateNavigationController(title: "Меню", image: UIImage(systemName: "takeoutbag.and.cup.and.straw.fill")!, rootViewController: MenuController())
+        for index in 0..<presenter.viewControllers.count {
+            if index == 0 {
+                let menu = tamplateNavigationController(title: "Меню", image: UIImage(systemName: "takeoutbag.and.cup.and.straw.fill")!, rootViewController: presenter.viewControllers[index])
+                tabControllers.append(menu)
+                
+            } else if index == 1 {
+                let location = tamplateNavigationController(title: "Контакты", image: UIImage(systemName: "mappin")!, rootViewController: presenter.viewControllers[index])
+                tabControllers.append(location)
+                
+            } else if index == 2 {
+                let profile = tamplateNavigationController(title: "Профиль", image: UIImage(systemName: "person.fill")!, rootViewController: presenter.viewControllers[index])
+                tabControllers.append(profile)
+                
+            } else if index == 3 {
+                let purchaise = tamplateNavigationController(title: "Корзина", image: UIImage(systemName: "cart.fill")!, rootViewController: presenter.viewControllers[index])
+                tabControllers.append(purchaise)
+            }
+        }
         
-        let location = tamplateNavigationController(title: "Контакты", image: UIImage(systemName: "mappin")!, rootViewController: LocationsController())
-        
-        let profile = tamplateNavigationController(title: "Профиль", image: UIImage(systemName: "person.fill")!, rootViewController: ProfileController())
-        
-        let purchaise = tamplateNavigationController(title: "Корзина", image: UIImage(systemName: "cart.fill")!, rootViewController: PurchaseController())
-        
-        viewControllers = [menu, location, profile, purchaise]
-        
-        tabBar.tintColor = .systemOrange
+        viewControllers = tabControllers
     }
     
     func tamplateNavigationController(title: String, image: UIImage, rootViewController: UIViewController) -> UINavigationController {
@@ -46,9 +65,10 @@ class MainTabController: UITabBarController {
         
         return nav
     }
-    
-    
+
 }
+
+
 
 // MARK: - UITabBarControllerDelegate
 extension MainTabController: UITabBarControllerDelegate { // срабатывает по нажатию на любую кнопку tabBar

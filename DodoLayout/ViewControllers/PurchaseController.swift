@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PurchaseController: UIViewController {
+class PurchaseController: UIViewController, MainTabView {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
