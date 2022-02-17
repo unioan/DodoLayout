@@ -23,5 +23,10 @@ class MenuPresenter: MenuViewPresenterProtocol {
         self.mockData = data
     }
     
+    func foodKindSelected(_ foodKind: FoodKind) {
+        
+        print("DEBUG: presenter recived foodKIND \(foodKind)")
+    }
+    
     
 }

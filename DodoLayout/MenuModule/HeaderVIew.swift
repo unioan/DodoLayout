@@ -7,10 +7,18 @@
 
 import UIKit
 
+protocol HeaderViewDelegate: AnyObject {
+    func categoryChosen(_ foodKind: FoodKind)
+}
+
+
+
 class HeaderView: UICollectionReusableView {
     static let reuseIdentifier = "headerView"
     
     // MARK: Properties
+    weak var headerDelegate: HeaderViewDelegate?
+    
     var categoriesCollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: LayoutManger.createCategoryControllerCollectionLayout())
     
     
@@ -51,20 +59,23 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: NumberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return FoodKind.allCases.count
     }
     
     // MARK: CellForItem
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
-        cell.textLabel.text = ("\(indexPath.row)")
+        guard let foodCategory = FoodKind(rawValue: indexPath.row) else { fatalError()}
+        cell.textLabel.text = ("\(foodCategory.foodString)")
         cell.backgroundColor = .systemRed
         return cell
     }
     
     // MARK: ItemSelected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG: TAPPED in Header view \(indexPath.row) cell!")
+        guard let foodCategory = FoodKind(rawValue: indexPath.row) else { fatalError() }
+        headerDelegate?.categoryChosen(foodCategory)
+        //print("DEBUG: TAPPED in Header view \(foodCategory) cell index \(indexPath.row)!")
     }
     
     

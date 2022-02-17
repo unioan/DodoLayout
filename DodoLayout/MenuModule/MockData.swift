@@ -10,5 +10,5 @@ import Foundation
 struct MockData {
     let bannerArray = Array(1...20)
     let categoryArray = Array(21...40)
-    let itemsArray = Array(41...60)
+    let itemsArray = Array(1...20)
 }

@@ -7,14 +7,11 @@
 
 import UIKit
 
-class MenuController: UIViewController, MenuViewProtocol, MainTabView {
-        
+class MenuController: UIViewController {
+    
     // MARK: Properties
     var presenter: MenuPresenter!
-    
     var collectionView: UICollectionView!
-    var categoryCollectionView: UICollectionView! // Try to connect category controller through this controller
-    
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -36,7 +33,7 @@ class MenuController: UIViewController, MenuViewProtocol, MainTabView {
         
         collectionView.backgroundColor = .systemGroupedBackground
     }
-
+    
 }
 
 
@@ -77,18 +74,28 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.backgroundColor = .white
             return cell
         }
-    
-       
+        
+        
     }
     
     // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as! HeaderView
-           
-            print("DEBUG: Header has been configured")
-            return header
-        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as! HeaderView
+        header.headerDelegate = self
+        return header
     }
     
+}
+
+// MARK: - HeaderViewDelegate
+extension MenuController: HeaderViewDelegate {
+    func categoryChosen(_ foodKind: FoodKind) {
+        presenter.foodKindSelected(foodKind)
+        collectionView.scrollToItem(at: IndexPath(row: 10, section: 1), at: .top, animated: true)
+        print("DEBUG: Menu Controller recived category \(foodKind) from header")
+    }
+}
+
+extension MenuController: MenuViewProtocol {
 }
