@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */; };
 		512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4627BFFA2A00C192B3 /* MenuItem.swift */; };
+		512D0B4927BFFC5800C192B3 /* GenerateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4827BFFC5700C192B3 /* GenerateData.swift */; };
 		51F0D4B727BD8B00006702F9 /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B627BD8B00006702F9 /* LocationsController.swift */; };
 		51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B827BD8BC4006702F9 /* ProfileController.swift */; };
 		51F0D4BB27BD8C04006702F9 /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringExt.swift; sourceTree = "<group>"; };
 		512D0B4627BFFA2A00C192B3 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		512D0B4827BFFC5700C192B3 /* GenerateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateData.swift; sourceTree = "<group>"; };
 		51F0D4B627BD8B00006702F9 /* LocationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsController.swift; sourceTree = "<group>"; };
 		51F0D4B827BD8BC4006702F9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
@@ -73,10 +75,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		512D0B4A27BFFC5E00C192B3 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		51F0D4C427BE610F006702F9 /* ServiceManagers */ = {
 			isa = PBXGroup;
 			children = (
 				51F0D4C227BE60EF006702F9 /* LayoutManger.swift */,
+				512D0B4827BFFC5700C192B3 /* GenerateData.swift */,
 			);
 			path = ServiceManagers;
 			sourceTree = "<group>";
@@ -196,7 +207,7 @@
 				51F0D4BC27BDA8C7006702F9 /* FooterView.swift */,
 				51F0D4D527BE97BB006702F9 /* ViewControllers */,
 				51F0D4C427BE610F006702F9 /* ServiceManagers */,
-				512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */,
+				512D0B4A27BFFC5E00C192B3 /* Extentions */,
 			);
 			path = DodoLayout;
 			sourceTree = "<group>";
@@ -276,6 +287,7 @@
 				51F0D4C927BE6245006702F9 /* SectionKind.swift in Sources */,
 				512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */,
 				51F693BE27BC524E00D8A0FE /* MenuController.swift in Sources */,
+				512D0B4927BFFC5800C192B3 /* GenerateData.swift in Sources */,
 				51F693BA27BC524E00D8A0FE /* AppDelegate.swift in Sources */,
 				51F0D4C327BE60EF006702F9 /* LayoutManger.swift in Sources */,
 				51F0D4BD27BDA8C7006702F9 /* FooterView.swift in Sources */,

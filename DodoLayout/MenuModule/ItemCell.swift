@@ -47,7 +47,7 @@ class ItemCell: UICollectionViewCell {
     
     public lazy var priceButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setAttributedTitle(.setPrice(756), for: .normal)
+        button.setAttributedTitle(.setPrice(345), for: .normal)
         return button
     }()
     

@@ -12,7 +12,7 @@ enum FoodKind: Int, CaseIterable {
     case burger
     case appetizer
     case sauces
-    case bevarage
+    case beverage
     case dessert
     
     var foodString: String {
@@ -25,7 +25,7 @@ enum FoodKind: Int, CaseIterable {
             return "Закуски"
         case .sauces:
             return "Соусы"
-        case .bevarage:
+        case .beverage:
             return "Напитки"
         case .dessert:
             return "Десерты"
