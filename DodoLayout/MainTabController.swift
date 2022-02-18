@@ -8,7 +8,7 @@
 import UIKit
 
 
-class MainTabController: UITabBarController {
+final class MainTabController: UITabBarController {
     
     // MARK: Properties
     var presenter: MainTabPresenterProtocol! {
@@ -62,7 +62,6 @@ class MainTabController: UITabBarController {
         
         nav.tabBarItem.image = image
         nav.tabBarItem.title = title
-        
         return nav
     }
 
@@ -74,7 +73,6 @@ class MainTabController: UITabBarController {
 extension MainTabController: UITabBarControllerDelegate { // срабатывает по нажатию на любую кнопку tabBar
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.firstIndex(of: viewController)
-        
         print("DEBUG: index tapped \(index!)")
         return true
     }

@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol MainTabView: AnyObject {
-    
-}
-
 protocol MainTabPresenterProtocol: AnyObject {
     init(viewControllers: [UIViewController])
     var viewControllers: [UIViewController] { get }
 }
 
 
-class MainTabPresenter: MainTabPresenterProtocol {
+final class MainTabPresenter: MainTabPresenterProtocol {
     var viewControllers: [UIViewController]
     
     

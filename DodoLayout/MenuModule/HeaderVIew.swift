@@ -12,8 +12,7 @@ protocol HeaderViewDelegate: AnyObject {
 }
 
 
-
-class HeaderView: UICollectionReusableView {
+final class HeaderView: UICollectionReusableView {
     static let reuseIdentifier = "headerView"
     
     // MARK: Properties
@@ -21,6 +20,7 @@ class HeaderView: UICollectionReusableView {
     
     var categoriesCollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: LayoutManger.createCategoryControllerCollectionLayout())
     
+    var initialySelectedButton = true
     
     // MARK: Life Cycle
     override init(frame: CGRect) {
@@ -32,7 +32,7 @@ class HeaderView: UICollectionReusableView {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -66,14 +66,31 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
         guard let foodCategory = FoodKind(rawValue: indexPath.row) else { fatalError()}
+        
+        cell.category = foodCategory
         cell.textLabel.text = ("\(foodCategory.foodString)")
-      
+        
+        if cell.category == .pizza && initialySelectedButton {
+            cell.backgroundColor = UIColor.systemPink.withAlphaComponent(0.2)
+            cell.textLabel.textColor = UIColor.systemPink
+            cell.layer.borderWidth = 0
+            cell.layer.cornerRadius = 18
+        }
+        
         return cell
     }
     
     // MARK: ItemSelected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if initialySelectedButton {
+            initialySelectedButton = false
+            let initialCell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0))
+            initialCell?.isSelected = false
+        }
+        
         guard let foodCategory = FoodKind(rawValue: indexPath.row) else { fatalError() }
+        
         headerDelegate?.categoryChosen(foodCategory)
         //print("DEBUG: TAPPED in Header view \(foodCategory) cell index \(indexPath.row)!")
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuController: UIViewController {
+final class MenuController: UIViewController {
     
     // MARK: Properties
     var presenter: MenuPresenter!
@@ -52,24 +52,31 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let sectionKind = SectionKind(rawValue: section) else { fatalError() }
         switch sectionKind {
         case .baner:
-            return presenter.mockData.bannerArray.count
+            return 6
         case .item:
-            return presenter.mockData.itemsArray.count
+            return presenter.menuItems.count
         }
     }
     
     // MARK: CellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let itemIndex = indexPath.row
         guard let sectionKind = SectionKind(rawValue: indexPath.section) else { fatalError() }
         
         switch sectionKind {
+            
         case .baner:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BanerCell.reuseIdentifier, for: indexPath) as! BanerCell
             return cell
+            
         case .item:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCell.reuseIdentifier, for: indexPath) as! ItemCell
-            //cell.itemNameLabel.text = "\(presenter.mockData.itemsArray[indexPath.row])"
+            cell.ItemImageView.image = presenter.menuItems[itemIndex].image
+            cell.itemNameLabel.text = presenter.menuItems[itemIndex].itemName
+            cell.captionLabel.text = presenter.menuItems[itemIndex].caption
+            cell.priceButton.setAttributedTitle(.setPrice(presenter.menuItems[itemIndex].price), for: .normal)
+        
             cell.backgroundColor = .white
             return cell
         }

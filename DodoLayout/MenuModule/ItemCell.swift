@@ -7,13 +7,12 @@
 
 import UIKit
 
-class ItemCell: UICollectionViewCell {
+final class ItemCell: UICollectionViewCell {
     static let reuseIdentifier = "ItemCell"
     
     public var ItemImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "pizza1")
         iv.layer.cornerRadius = 18
         iv.clipsToBounds = true
         return iv
@@ -21,12 +20,9 @@ class ItemCell: UICollectionViewCell {
     
     public var itemNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 19)
-        label.text = "Pottato Pizza"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         
         label.isUserInteractionEnabled = false
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
         label.textAlignment = .left
         return label
     }()
@@ -35,37 +31,30 @@ class ItemCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 12)
-        label.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor."
         
         label.isUserInteractionEnabled = false
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
         label.textAlignment = .left
-        label.numberOfLines = 0
+        label.numberOfLines = 4
         return label
     }()
     
     public lazy var priceButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setAttributedTitle(.setPrice(345), for: .normal)
+        button.tintColor = .systemPink
         return button
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupConstraints()
+        setDeselectedPriceButton()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
-        textLabelConstraints()
-        setDeselectedPriceButton()
-    }
     
     private func setDeselectedPriceButton() {
         priceButton.titleLabel?.textColor = .systemPink
@@ -75,50 +64,48 @@ class ItemCell: UICollectionViewCell {
         priceButton.layer.borderColor = UIColor.systemPink.withAlphaComponent(0.4).cgColor
     }
     
-    private func textLabelConstraints() {
+    private func setupConstraints() {
         
-        addSubview(priceButton)
-        priceButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            priceButton.heightAnchor.constraint(equalToConstant: 30),
-            priceButton.widthAnchor.constraint(equalToConstant: 80),
-        ])
-        
-        let nameAndCaptionStack = UIStackView(arrangedSubviews: [itemNameLabel, captionLabel])
+        let nameAndCaptionStack = UIStackView(arrangedSubviews: [priceButton])
         addSubview(nameAndCaptionStack)
         nameAndCaptionStack.translatesAutoresizingMaskIntoConstraints = false
         nameAndCaptionStack.axis = .vertical
-        nameAndCaptionStack.distribution = .fill
-        nameAndCaptionStack.spacing = 5
+        nameAndCaptionStack.distribution = .fillEqually
+        nameAndCaptionStack.alignment = .trailing
     
         
-        let descriptionItemsStack = UIStackView(arrangedSubviews: [nameAndCaptionStack, priceButton])
+        let descriptionItemsStack = UIStackView(arrangedSubviews: [itemNameLabel, captionLabel, nameAndCaptionStack])
         addSubview(descriptionItemsStack)
         descriptionItemsStack.translatesAutoresizingMaskIntoConstraints = false
         descriptionItemsStack.axis = .vertical
-        descriptionItemsStack.alignment = .trailing
-        descriptionItemsStack.distribution = .fill
-        descriptionItemsStack.spacing = 12
+        descriptionItemsStack.alignment = .leading
+        descriptionItemsStack.distribution = .fillProportionally
+        descriptionItemsStack.spacing = 10
         
         
         let mainStack = UIStackView(arrangedSubviews: [ItemImageView, descriptionItemsStack])
         addSubview(mainStack)
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         mainStack.axis = .horizontal
-        mainStack.alignment = .center
+        mainStack.alignment = .top
         mainStack.distribution = .fill
         mainStack.spacing = 8
       
         NSLayoutConstraint.activate([
-            mainStack.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            mainStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            mainStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             mainStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             mainStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
         ])
         
         NSLayoutConstraint.activate([
-            ItemImageView.heightAnchor.constraint(equalToConstant: 140),
-            ItemImageView.widthAnchor.constraint(equalToConstant: 140),
+            ItemImageView.heightAnchor.constraint(equalToConstant: 130),
+            ItemImageView.widthAnchor.constraint(equalToConstant: 130),
+        ])
+        
+        NSLayoutConstraint.activate([
+            priceButton.heightAnchor.constraint(equalToConstant: 28),
+            priceButton.widthAnchor.constraint(equalToConstant: 68),
+            priceButton.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
         ])
     }
 }

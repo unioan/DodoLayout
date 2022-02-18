@@ -7,16 +7,14 @@
 
 import UIKit
 
-class LocationsController: UIViewController, MainTabView {
+final class LocationsController: UIViewController {
     
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .systemYellow
     }
     
-
 
 }

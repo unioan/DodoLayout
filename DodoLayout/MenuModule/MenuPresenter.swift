@@ -7,26 +7,25 @@
 
 import Foundation
 
-protocol MenuViewProtocol: AnyObject { // Методы которые делегируются Menu controller
+protocol MenuViewProtocol: AnyObject {
 }
 
-protocol MenuViewPresenterProtocol: AnyObject { // Требование к presenter
-    init(view: MenuViewProtocol, data: MockData)
+protocol MenuViewPresenterProtocol: AnyObject {
+    init(view: MenuViewProtocol, data: [MenuItem])
 }
+
 
 class MenuPresenter: MenuViewPresenterProtocol {
-    let view: MenuViewProtocol
-    let mockData: MockData
+    weak var view: MenuViewProtocol?
+    let menuItems: [MenuItem]
     
-    required init(view: MenuViewProtocol, data: MockData) {
+    required init(view: MenuViewProtocol, data: [MenuItem]) {
         self.view = view
-        self.mockData = data
+        self.menuItems = data
     }
     
     func foodKindSelected(_ foodKind: FoodKind) {
-        
         print("DEBUG: presenter recived foodKIND \(foodKind)")
     }
-    
     
 }

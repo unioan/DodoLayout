@@ -77,7 +77,7 @@ struct GenerateData {
                              caption: "Theophrasto disputatur, viro in philosophia peripatetica modestissimo doctissimoque, eaque disputatio scripta est, si recte meminimus, in libro eius de amicitia primo.",
                              price: 190, image: UIImage(named: "sauce4")!),
                     
-                    MenuItem(foodKind: .beverage, itemName: "Barbecue Sauce",
+                    MenuItem(foodKind: .beverage, itemName: "Cappuccino",
                              caption: "Facto molestiam, quod metuo, ne a perfidia et culpa non abhorreat in eadem re eodemque tempore inque communi negotio.",
                              price: 340, image: UIImage(named: "beverage1")!),
                     MenuItem(foodKind: .beverage, itemName: "Hot chocolate",

@@ -29,7 +29,7 @@ class ModuleBuilder: Builder {
     }
     
     static func createMenuModule() -> UIViewController {
-        let data = MockData()
+        let data = GenerateData().menuItems()
         let view = MenuController()
         let presenter = MenuPresenter(view: view, data: data)
         view.presenter = presenter

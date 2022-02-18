@@ -7,15 +7,8 @@
 
 import UIKit
 
-class BanerCell: UICollectionViewCell {
+final class BanerCell: UICollectionViewCell {
     static let reuseIdentifier = "BanerCell"
-    
-    public lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
     
     public var bannerImageView: UIImageView = {
         let iv = UIImageView()
@@ -28,20 +21,15 @@ class BanerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
-        textLabelConstraints()
-    }
     
-    private func textLabelConstraints() {
-        
+    private func setupConstraints() {
         addSubview(bannerImageView)
         bannerImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

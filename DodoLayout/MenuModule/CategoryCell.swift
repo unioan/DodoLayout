@@ -7,8 +7,10 @@
 
 import UIKit
 
-class CategoryCell: UICollectionViewCell {
+final class CategoryCell: UICollectionViewCell {
     static let reuseIdentifier = "CategoryCell"
+    
+    var category: FoodKind!
     
     override var isSelected: Bool {
         didSet {
@@ -17,11 +19,11 @@ class CategoryCell: UICollectionViewCell {
             } else {
                 setupViewsWhenDeselected()
             }
-            print("DEBUG: CategoryCell selected: \(isSelected)")
+            //print("DEBUG: CategoryCell selected: \(isSelected)")
         }
     }
     
-    public lazy var textLabel: UILabel = {
+    public var textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont(name: "Helvetica-bold", size: 16)
@@ -29,6 +31,8 @@ class CategoryCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.2
         return label
     }()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +43,8 @@ class CategoryCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
     private func setupViewsWhenDeselected() {
         backgroundColor = .systemGroupedBackground
