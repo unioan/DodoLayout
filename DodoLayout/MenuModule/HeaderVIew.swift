@@ -67,7 +67,7 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as! CategoryCell
         guard let foodCategory = FoodKind(rawValue: indexPath.row) else { fatalError()}
         cell.textLabel.text = ("\(foodCategory.foodString)")
-        cell.backgroundColor = .systemRed
+      
         return cell
     }
     

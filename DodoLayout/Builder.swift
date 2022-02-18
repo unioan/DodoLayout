@@ -8,7 +8,11 @@
 import UIKit
 
 protocol Builder: AnyObject {
+    static func createMainTabModule() -> UITabBarController
     static func createMenuModule() -> UIViewController
+    static func createLocationModule() -> UIViewController
+    static func createProfileModule() -> UIViewController
+    static func createPurchaseModule() -> UIViewController
 }
 
 class ModuleBuilder: Builder {

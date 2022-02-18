@@ -31,6 +31,7 @@ class MenuController: UIViewController {
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: ItemCell.reuseIdentifier)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
         
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .systemGroupedBackground
     }
     
@@ -65,12 +66,10 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         switch sectionKind {
         case .baner:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BanerCell.reuseIdentifier, for: indexPath) as! BanerCell
-            cell.textLabel.text = "\(presenter.mockData.bannerArray[indexPath.row])"
-            cell.backgroundColor = .systemRed
             return cell
         case .item:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCell.reuseIdentifier, for: indexPath) as! ItemCell
-            cell.textLabel.text = "\(presenter.mockData.itemsArray[indexPath.row])"
+            //cell.itemNameLabel.text = "\(presenter.mockData.itemsArray[indexPath.row])"
             cell.backgroundColor = .white
             return cell
         }

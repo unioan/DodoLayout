@@ -10,28 +10,52 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     static let reuseIdentifier = "CategoryCell"
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                setupViewsWhenSelected()
+            } else {
+                setupViewsWhenDeselected()
+            }
+            print("DEBUG: CategoryCell selected: \(isSelected)")
+        }
+    }
+    
     public lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Helvetica-bold", size: 16)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupViewsWhenDeselected()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
-        textLabelConstraints()
+    private func setupViewsWhenDeselected() {
+        backgroundColor = .systemGroupedBackground
+        textLabel.textColor = UIColor.systemPink.withAlphaComponent(0.4)
+        layer.cornerRadius = 18
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.systemPink.withAlphaComponent(0.4).cgColor
     }
     
-    private func textLabelConstraints() {
+    private func setupViewsWhenSelected() {
+        backgroundColor = UIColor.systemPink.withAlphaComponent(0.2)
+        textLabel.textColor = UIColor.systemPink
+        layer.borderWidth = 0
+        layer.cornerRadius = 18
+    }
+    
+    private func setupConstraints() {
         addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

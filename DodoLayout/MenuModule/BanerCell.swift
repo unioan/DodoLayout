@@ -17,6 +17,15 @@ class BanerCell: UICollectionViewCell {
         return label
     }()
     
+    public var bannerImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(named: "pizzaBanner")
+        iv.layer.cornerRadius = 18
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -33,13 +42,13 @@ class BanerCell: UICollectionViewCell {
     
     private func textLabelConstraints() {
         
-        addSubview(textLabel)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(bannerImageView)
+        bannerImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            textLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            textLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            bannerImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bannerImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bannerImageView.topAnchor.constraint(equalTo: topAnchor),
+            bannerImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

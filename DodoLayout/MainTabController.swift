@@ -27,7 +27,7 @@ class MainTabController: UITabBarController {
     // MARK: Helpers
     func setViews() {
         view.backgroundColor = .white
-        tabBar.tintColor = .systemOrange
+        tabBar.tintColor = .systemPink
     }
     
     func configureViewControllers() {

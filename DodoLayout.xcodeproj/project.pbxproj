@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */; };
+		512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4627BFFA2A00C192B3 /* MenuItem.swift */; };
 		51F0D4B727BD8B00006702F9 /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B627BD8B00006702F9 /* LocationsController.swift */; };
 		51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B827BD8BC4006702F9 /* ProfileController.swift */; };
 		51F0D4BB27BD8C04006702F9 /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringExt.swift; sourceTree = "<group>"; };
+		512D0B4627BFFA2A00C192B3 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		51F0D4B627BD8B00006702F9 /* LocationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsController.swift; sourceTree = "<group>"; };
 		51F0D4B827BD8BC4006702F9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				51F0D4DC27BEE32D006702F9 /* FoodKind.swift */,
 				51F0D4C827BE6245006702F9 /* SectionKind.swift */,
 				51F0D4D227BE9422006702F9 /* MockData.swift */,
+				512D0B4627BFFA2A00C192B3 /* MenuItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				51F0D4BC27BDA8C7006702F9 /* FooterView.swift */,
 				51F0D4D527BE97BB006702F9 /* ViewControllers */,
 				51F0D4C427BE610F006702F9 /* ServiceManagers */,
+				512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */,
 			);
 			path = DodoLayout;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 			files = (
 				51F693D627BD138C00D8A0FE /* HeaderVIew.swift in Sources */,
 				51F0D4C927BE6245006702F9 /* SectionKind.swift in Sources */,
+				512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */,
 				51F693BE27BC524E00D8A0FE /* MenuController.swift in Sources */,
 				51F693BA27BC524E00D8A0FE /* AppDelegate.swift in Sources */,
 				51F0D4C327BE60EF006702F9 /* LayoutManger.swift in Sources */,
@@ -283,6 +290,7 @@
 				51F693E427BD832700D8A0FE /* MainTabController.swift in Sources */,
 				51F693D227BC53B000D8A0FE /* CategoryCell.swift in Sources */,
 				51F0D4D327BE9422006702F9 /* MockData.swift in Sources */,
+				512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */,
 				51F0D4D127BE86B4006702F9 /* Builder.swift in Sources */,
 				51F0D4DD27BEE32D006702F9 /* FoodKind.swift in Sources */,
 			);
