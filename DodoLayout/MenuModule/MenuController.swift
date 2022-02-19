@@ -12,18 +12,23 @@ final class MenuController: UIViewController {
     // MARK: Properties
     var presenter: MenuPresenter!
     var collectionView: UICollectionView!
+    
     var chosenMenuItemIndex: IndexPath?
     var needsOffset = false
+    
+    let cityPickerButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(title: "Москва", style: .plain, target: self, action: nil)
+        barButton.setTitleTextAttributes([.font: UIFont(name: "Helvetica", size: 16)!,
+                                                 .foregroundColor: UIColor.black], for: .normal)
+        return barButton
+    }()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cityPickerButton = UIBarButtonItem(title: "Москва", style: .plain, target: self, action: nil)
-        cityPickerButton.setTitleTextAttributes([.font: UIFont(name: "Helvetica", size: 18)!,
-                                                 .foregroundColor: UIColor.black], for: .normal)
         navigationItem.leftBarButtonItem = cityPickerButton
-        configureCollectionView()
         
+        configureCollectionView()
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -76,6 +81,7 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
             return cell
         case .item:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuItemCell.reuseIdentifier, for: indexPath) as! MenuItemCell
+            
             cell.foodKind = presenter.menuItems[itemIndex].foodKind
             cell.ItemImageView.image = presenter.menuItems[itemIndex].image
             cell.itemNameLabel.text = presenter.menuItems[itemIndex].itemName

@@ -10,6 +10,7 @@ import UIKit
 final class BanerCell: UICollectionViewCell {
     static let reuseIdentifier = "BanerCell"
     
+    // MARK: Properties
     public var bannerImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -19,6 +20,8 @@ final class BanerCell: UICollectionViewCell {
         return iv
     }()
     
+    
+    // MARK: Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupConstraints()
@@ -29,6 +32,7 @@ final class BanerCell: UICollectionViewCell {
     }
     
     
+    // MARK: Helpers
     private func setupConstraints() {
         addSubview(bannerImageView)
         bannerImageView.translatesAutoresizingMaskIntoConstraints = false

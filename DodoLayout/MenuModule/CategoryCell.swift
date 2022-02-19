@@ -10,7 +10,7 @@ import UIKit
 final class CategoryCell: UICollectionViewCell {
     static let reuseIdentifier = "CategoryCell"
     
-    var category: FoodKind!
+    // MARK: Properties
     
     override var isSelected: Bool {
         didSet {
@@ -19,9 +19,10 @@ final class CategoryCell: UICollectionViewCell {
             } else {
                 setupViewsWhenDeselected()
             }
-            //print("DEBUG: CategoryCell selected: \(isSelected)")
         }
     }
+    
+    var category: FoodKind!
     
     public var textLabel: UILabel = {
         let label = UILabel()
@@ -33,7 +34,7 @@ final class CategoryCell: UICollectionViewCell {
     }()
     
     
-    
+    // MARK: Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViewsWhenDeselected()
@@ -45,7 +46,7 @@ final class CategoryCell: UICollectionViewCell {
     }
     
     
-    
+    // MARK: Helpers
     private func setupViewsWhenDeselected() {
         backgroundColor = .systemGroupedBackground
         textLabel.textColor = UIColor.systemPink.withAlphaComponent(0.4)

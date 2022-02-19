@@ -10,6 +10,7 @@ import UIKit
 final class MenuItemCell: UICollectionViewCell {
     static let reuseIdentifier = "ItemCell"
     
+    // MARK: Properties
     public var foodKind: FoodKind!
     
     public var ItemImageView: UIImageView = {
@@ -47,6 +48,7 @@ final class MenuItemCell: UICollectionViewCell {
     }()
     
     
+    // MARK: Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -59,6 +61,7 @@ final class MenuItemCell: UICollectionViewCell {
     }
     
     
+    // MARK: Helpers
     private func setDeselectedPriceButton() {
         priceButton.titleLabel?.textColor = .systemPink
         priceButton.backgroundColor = .white
