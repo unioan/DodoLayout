@@ -12,10 +12,16 @@ final class MenuController: UIViewController {
     // MARK: Properties
     var presenter: MenuPresenter!
     var collectionView: UICollectionView!
+    var chosenMenuItemIndex: IndexPath?
+    var needsOffset = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        let cityPickerButton = UIBarButtonItem(title: "Москва", style: .plain, target: self, action: nil)
+        cityPickerButton.setTitleTextAttributes([.font: UIFont(name: "Helvetica", size: 18)!,
+                                                 .foregroundColor: UIColor.black], for: .normal)
+        navigationItem.leftBarButtonItem = cityPickerButton
         configureCollectionView()
         
         collectionView.dataSource = self
@@ -28,8 +34,8 @@ final class MenuController: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: LayoutManger.createMenuControllerCollectionLayout())
         view.addSubview(collectionView)
         collectionView.register(BanerCell.self, forCellWithReuseIdentifier: BanerCell.reuseIdentifier)
-        collectionView.register(ItemCell.self, forCellWithReuseIdentifier: ItemCell.reuseIdentifier)
-        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
+        collectionView.register(MenuItemCell.self, forCellWithReuseIdentifier: MenuItemCell.reuseIdentifier)
+        collectionView.register(CategoryPickerView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CategoryPickerView.reuseIdentifier)
         
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .systemGroupedBackground
@@ -65,19 +71,17 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let sectionKind = SectionKind(rawValue: indexPath.section) else { fatalError() }
         
         switch sectionKind {
-            
         case .baner:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BanerCell.reuseIdentifier, for: indexPath) as! BanerCell
             return cell
-            
         case .item:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCell.reuseIdentifier, for: indexPath) as! ItemCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuItemCell.reuseIdentifier, for: indexPath) as! MenuItemCell
+            cell.foodKind = presenter.menuItems[itemIndex].foodKind
             cell.ItemImageView.image = presenter.menuItems[itemIndex].image
             cell.itemNameLabel.text = presenter.menuItems[itemIndex].itemName
             cell.captionLabel.text = presenter.menuItems[itemIndex].caption
             cell.priceButton.setAttributedTitle(.setPrice(presenter.menuItems[itemIndex].price), for: .normal)
         
-            cell.backgroundColor = .white
             return cell
         }
         
@@ -87,21 +91,47 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as! HeaderView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CategoryPickerView.reuseIdentifier, for: indexPath) as! CategoryPickerView
         header.headerDelegate = self
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let chosenMenuItemIndex = chosenMenuItemIndex else { return }
+        
+        if chosenMenuItemIndex == indexPath && chosenMenuItemIndex == IndexPath(row: 0, section: SectionKind.item.rawValue) {
+            self.needsOffset = false
+            self.chosenMenuItemIndex = nil
+        } else if chosenMenuItemIndex == indexPath && needsOffset {
+            let marginFromTopViews = view.safeAreaInsets.top + 60
+            let point = cell.frame.origin.y
+            collectionView.setContentOffset(CGPoint(x: 0, y: point - marginFromTopViews), animated: false)
+            needsOffset = false
+        }
+        
     }
     
 }
 
 // MARK: - HeaderViewDelegate
-extension MenuController: HeaderViewDelegate {
+extension MenuController: CategoryPickerViewDelegate {
     func categoryChosen(_ foodKind: FoodKind) {
-        presenter.foodKindSelected(foodKind)
-        collectionView.scrollToItem(at: IndexPath(row: 10, section: 1), at: .top, animated: true)
-        print("DEBUG: Menu Controller recived category \(foodKind) from header")
+        let chosenItemIndexInArray = presenter.menuItems.firstIndex { $0.foodKind == foodKind }
+        
+        let cellIndexOfFirstItemInKind = IndexPath(row: chosenItemIndexInArray ?? 0, section: SectionKind.item.rawValue)
+        
+        if cellIndexOfFirstItemInKind == IndexPath(row: 0, section: SectionKind.item.rawValue) {
+            collectionView.scrollToItem(at: cellIndexOfFirstItemInKind, at: .centeredVertically, animated: true)
+        } else if cellIndexOfFirstItemInKind != chosenMenuItemIndex {
+            collectionView.scrollToItem(at: cellIndexOfFirstItemInKind, at: .top, animated: true)
+            needsOffset = true
+        }
+        
+        chosenMenuItemIndex = cellIndexOfFirstItemInKind
     }
+    
 }
 
+// MARK: - MenuViewProtocol
 extension MenuController: MenuViewProtocol {
 }

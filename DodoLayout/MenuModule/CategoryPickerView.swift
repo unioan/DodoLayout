@@ -7,16 +7,16 @@
 
 import UIKit
 
-protocol HeaderViewDelegate: AnyObject {
+protocol CategoryPickerViewDelegate: AnyObject {
     func categoryChosen(_ foodKind: FoodKind)
 }
 
 
-final class HeaderView: UICollectionReusableView {
+final class CategoryPickerView: UICollectionReusableView {
     static let reuseIdentifier = "headerView"
     
     // MARK: Properties
-    weak var headerDelegate: HeaderViewDelegate?
+    weak var headerDelegate: CategoryPickerViewDelegate?
     
     var categoriesCollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: LayoutManger.createCategoryControllerCollectionLayout())
     
@@ -55,7 +55,7 @@ final class HeaderView: UICollectionReusableView {
 
 
 // MARK: - UICollectionViewDelegate & UICollectionViewDataSource
-extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoryPickerView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: NumberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -89,9 +89,9 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
             initialCell?.isSelected = false
         }
         
-        guard let foodCategory = FoodKind(rawValue: indexPath.row) else { fatalError() }
+        guard let foodKind = FoodKind(rawValue: indexPath.row) else { fatalError() }
         
-        headerDelegate?.categoryChosen(foodCategory)
+        headerDelegate?.categoryChosen(foodKind)
         //print("DEBUG: TAPPED in Header view \(foodCategory) cell index \(indexPath.row)!")
     }
     

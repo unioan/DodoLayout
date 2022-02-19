@@ -7,8 +7,10 @@
 
 import UIKit
 
-final class ItemCell: UICollectionViewCell {
+final class MenuItemCell: UICollectionViewCell {
     static let reuseIdentifier = "ItemCell"
+    
+    public var foodKind: FoodKind!
     
     public var ItemImageView: UIImageView = {
         let iv = UIImageView()
@@ -47,6 +49,7 @@ final class ItemCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         setupConstraints()
         setDeselectedPriceButton()
     }

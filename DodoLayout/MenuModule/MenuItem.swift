@@ -7,7 +7,10 @@
 
 import UIKit
 
-struct MenuItem {
+struct MenuItem: CustomStringConvertible {
+    var description: String {
+        return "menuItem of kind \(foodKind), name \(itemName), price \(price) selected"
+    }
     let foodKind: FoodKind
     let itemName: String
     let caption: String

@@ -38,7 +38,6 @@ final class LayoutManger {
                 // ITEM
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let itemSpacing: CGFloat = 10 // items отступят со всех краев 5 поинтов
                 item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 0, bottom: 1, trailing: 0)
                 
                 
