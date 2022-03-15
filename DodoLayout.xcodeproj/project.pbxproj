@@ -9,15 +9,16 @@
 /* Begin PBXBuildFile section */
 		512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */; };
 		512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4627BFFA2A00C192B3 /* MenuItem.swift */; };
-		512D0B4927BFFC5800C192B3 /* GenerateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4827BFFC5700C192B3 /* GenerateData.swift */; };
+		512D0B4927BFFC5800C192B3 /* DataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4827BFFC5700C192B3 /* DataGenerator.swift */; };
+		5186E68027E10DDE007746D3 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E67F27E10DDE007746D3 /* AppRouter.swift */; };
 		51F0D4B727BD8B00006702F9 /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B627BD8B00006702F9 /* LocationsController.swift */; };
 		51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B827BD8BC4006702F9 /* ProfileController.swift */; };
 		51F0D4BB27BD8C04006702F9 /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */; };
-		51F0D4BF27BE5A78006702F9 /* MainTabPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4BE27BE5A78006702F9 /* MainTabPresenterProtocol.swift */; };
+		51F0D4BF27BE5A78006702F9 /* MainTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4BE27BE5A78006702F9 /* MainTabPresenter.swift */; };
 		51F0D4C127BE5E1C006702F9 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4C027BE5E1C006702F9 /* MenuPresenter.swift */; };
 		51F0D4C327BE60EF006702F9 /* LayoutManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4C227BE60EF006702F9 /* LayoutManger.swift */; };
 		51F0D4C927BE6245006702F9 /* SectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4C827BE6245006702F9 /* SectionKind.swift */; };
-		51F0D4D127BE86B4006702F9 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4D027BE86B4006702F9 /* Builder.swift */; };
+		51F0D4D127BE86B4006702F9 /* AppBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4D027BE86B4006702F9 /* AppBuilder.swift */; };
 		51F0D4DD27BEE32D006702F9 /* FoodKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4DC27BEE32D006702F9 /* FoodKind.swift */; };
 		51F693BA27BC524E00D8A0FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F693B927BC524E00D8A0FE /* AppDelegate.swift */; };
 		51F693BC27BC524E00D8A0FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F693BB27BC524E00D8A0FE /* SceneDelegate.swift */; };
@@ -35,15 +36,16 @@
 /* Begin PBXFileReference section */
 		512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringExt.swift; sourceTree = "<group>"; };
 		512D0B4627BFFA2A00C192B3 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		512D0B4827BFFC5700C192B3 /* GenerateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateData.swift; sourceTree = "<group>"; };
+		512D0B4827BFFC5700C192B3 /* DataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGenerator.swift; sourceTree = "<group>"; };
+		5186E67F27E10DDE007746D3 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		51F0D4B627BD8B00006702F9 /* LocationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsController.swift; sourceTree = "<group>"; };
 		51F0D4B827BD8BC4006702F9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
-		51F0D4BE27BE5A78006702F9 /* MainTabPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabPresenterProtocol.swift; sourceTree = "<group>"; };
+		51F0D4BE27BE5A78006702F9 /* MainTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabPresenter.swift; sourceTree = "<group>"; };
 		51F0D4C027BE5E1C006702F9 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		51F0D4C227BE60EF006702F9 /* LayoutManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManger.swift; sourceTree = "<group>"; };
 		51F0D4C827BE6245006702F9 /* SectionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionKind.swift; sourceTree = "<group>"; };
-		51F0D4D027BE86B4006702F9 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		51F0D4D027BE86B4006702F9 /* AppBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBuilder.swift; sourceTree = "<group>"; };
 		51F0D4DC27BEE32D006702F9 /* FoodKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodKind.swift; sourceTree = "<group>"; };
 		51F693B627BC524E00D8A0FE /* DodoLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DodoLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F693B927BC524E00D8A0FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,11 +81,27 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		5186E68127E1152A007746D3 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				5186E67F27E10DDE007746D3 /* AppRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		5186E68227E1155F007746D3 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				51F0D4D027BE86B4006702F9 /* AppBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		51F0D4C427BE610F006702F9 /* ServiceManagers */ = {
 			isa = PBXGroup;
 			children = (
 				51F0D4C227BE60EF006702F9 /* LayoutManger.swift */,
-				512D0B4827BFFC5700C192B3 /* GenerateData.swift */,
+				512D0B4827BFFC5700C192B3 /* DataGenerator.swift */,
 			);
 			path = ServiceManagers;
 			sourceTree = "<group>";
@@ -157,7 +175,7 @@
 		51F0D4D727BE9830006702F9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				51F0D4BE27BE5A78006702F9 /* MainTabPresenterProtocol.swift */,
+				51F0D4BE27BE5A78006702F9 /* MainTabPresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -192,7 +210,8 @@
 			children = (
 				51F693B927BC524E00D8A0FE /* AppDelegate.swift */,
 				51F693BB27BC524E00D8A0FE /* SceneDelegate.swift */,
-				51F0D4D027BE86B4006702F9 /* Builder.swift */,
+				5186E68127E1152A007746D3 /* Routers */,
+				5186E68227E1155F007746D3 /* Builder */,
 				51F0D4D427BE96C9006702F9 /* MainTabModule */,
 				51F0D4C627BE620A006702F9 /* MenuModule */,
 				51F693BF27BC524E00D8A0FE /* Main.storyboard */,
@@ -281,21 +300,22 @@
 				51F0D4C927BE6245006702F9 /* SectionKind.swift in Sources */,
 				512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */,
 				51F693BE27BC524E00D8A0FE /* MenuController.swift in Sources */,
-				512D0B4927BFFC5800C192B3 /* GenerateData.swift in Sources */,
+				512D0B4927BFFC5800C192B3 /* DataGenerator.swift in Sources */,
 				51F693BA27BC524E00D8A0FE /* AppDelegate.swift in Sources */,
 				51F0D4C327BE60EF006702F9 /* LayoutManger.swift in Sources */,
 				51F693D427BC53EF00D8A0FE /* MenuItemCell.swift in Sources */,
 				51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */,
 				51F0D4C127BE5E1C006702F9 /* MenuPresenter.swift in Sources */,
+				5186E68027E10DDE007746D3 /* AppRouter.swift in Sources */,
 				51F693CE27BC534C00D8A0FE /* BanerCell.swift in Sources */,
 				51F0D4BB27BD8C04006702F9 /* PurchaseController.swift in Sources */,
 				51F693BC27BC524E00D8A0FE /* SceneDelegate.swift in Sources */,
-				51F0D4BF27BE5A78006702F9 /* MainTabPresenterProtocol.swift in Sources */,
+				51F0D4BF27BE5A78006702F9 /* MainTabPresenter.swift in Sources */,
 				51F0D4B727BD8B00006702F9 /* LocationsController.swift in Sources */,
 				51F693E427BD832700D8A0FE /* MainTabController.swift in Sources */,
 				51F693D227BC53B000D8A0FE /* CategoryCell.swift in Sources */,
 				512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */,
-				51F0D4D127BE86B4006702F9 /* Builder.swift in Sources */,
+				51F0D4D127BE86B4006702F9 /* AppBuilder.swift in Sources */,
 				51F0D4DD27BEE32D006702F9 /* FoodKind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,7 +477,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.valdi.yushkov.DodoLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.valdi.yushkov.DodoLayoutApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -484,7 +504,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.valdi.yushkov.DodoLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.valdi.yushkov.DodoLayoutApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

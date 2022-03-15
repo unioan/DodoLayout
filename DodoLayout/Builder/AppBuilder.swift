@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol Builder: AnyObject {
+protocol AppBuilder: AnyObject {
     static func createMainTabModule() -> UITabBarController
     static func createMenuModule() -> UIViewController
     static func createLocationModule() -> UIViewController
@@ -15,12 +15,11 @@ protocol Builder: AnyObject {
     static func createPurchaseModule() -> UIViewController
 }
 
-class ModuleBuilder: Builder {
+class ModuleBuilder: AppBuilder {
     static func createMainTabModule() -> UITabBarController {
         
-        let presenter = MainTabPresenter(
-            viewControllers: [createMenuModule(), createLocationModule(),
-                              createProfileModule(), createPurchaseModule()])
+        let presenter = MainTabPresenter([createMenuModule(), createLocationModule(),
+             createProfileModule(), createPurchaseModule()])
         
         let view = MainTabController()
         view.presenter = presenter
@@ -29,7 +28,7 @@ class ModuleBuilder: Builder {
     }
     
     static func createMenuModule() -> UIViewController {
-        let data = GenerateData().menuItems()
+        let data = DataGenerator().menuItems()
         let view = MenuController()
         let presenter = MenuPresenter(view: view, data: data)
         view.presenter = presenter

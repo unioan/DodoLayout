@@ -119,7 +119,7 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
     
 }
 
-// MARK: - HeaderViewDelegate
+// MARK: - CategoryPickerViewDelegate (Header)
 extension MenuController: CategoryPickerViewDelegate {
     func categoryChosen(_ foodKind: FoodKind) {
         let chosenItemIndexInArray = presenter.menuItems.firstIndex { $0.foodKind == foodKind }

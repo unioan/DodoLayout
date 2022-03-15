@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct GenerateData {
+struct DataGenerator {
     
     func menuItems() -> [MenuItem] {
         let temp = [MenuItem(foodKind: .pizza, itemName: "Neapolitan Pizza",
