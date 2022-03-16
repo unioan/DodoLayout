@@ -7,14 +7,15 @@
 
 import UIKit
 
-final class AppRouter {
-    
-    private let tabController: UITabBarController
-    private let appBuilder: AppBuilder
-    
-    init(tabController: UITabBarController, appBuilder: AppBuilder) {
-        self.tabController = tabController
-        self.appBuilder = appBuilder
-    }
-    
+protocol AppRouter {  // Устанавливает общие требования к Router ( иметь navigation и builder)
+    var navigationController: UINavigationController? { get set }
+    var appBuilder: AppBuilder? { get set }
 }
+
+protocol RouterProtocol { // Функционал Router
+    func initialViewController()
+    func initialViewController()
+}
+
+
+
