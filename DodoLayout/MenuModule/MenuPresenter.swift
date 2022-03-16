@@ -11,17 +11,25 @@ protocol MenuViewProtocol: AnyObject {
 }
 
 protocol MenuViewPresenterProtocol: AnyObject {
-    init(view: MenuViewProtocol, data: [MenuItem])
+    init(view: MenuViewProtocol, data: [MenuItem], router: RouterProtocol)
+    func menuItemTapped(menuItem: MenuItem)
 }
 
 
 class MenuPresenter: MenuViewPresenterProtocol {
+
     weak var view: MenuViewProtocol?
     let menuItems: [MenuItem]
+    var router: RouterProtocol?
     
-    required init(view: MenuViewProtocol, data: [MenuItem]) {
+    required init(view: MenuViewProtocol, data: [MenuItem], router: RouterProtocol) {
         self.view = view
         self.menuItems = data
+        self.router = router
+    }
+    
+    func menuItemTapped(menuItem: MenuItem) {
+        router?.show(menuItem: menuItem)
     }
     
     func foodKindSelected(_ foodKind: FoodKind) {
