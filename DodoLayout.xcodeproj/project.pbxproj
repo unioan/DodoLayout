@@ -10,7 +10,9 @@
 		512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */; };
 		512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4627BFFA2A00C192B3 /* MenuItem.swift */; };
 		512D0B4927BFFC5800C192B3 /* DataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4827BFFC5700C192B3 /* DataGenerator.swift */; };
-		5186E68027E10DDE007746D3 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E67F27E10DDE007746D3 /* AppRouter.swift */; };
+		5186E68027E10DDE007746D3 /* RouterMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E67F27E10DDE007746D3 /* RouterMain.swift */; };
+		5186E6A627E21453007746D3 /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E6A527E21453007746D3 /* MenuItemViewController.swift */; };
+		5186E6A927E226F0007746D3 /* MenuItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5186E6A827E226F0007746D3 /* MenuItemPresenter.swift */; };
 		51F0D4B727BD8B00006702F9 /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B627BD8B00006702F9 /* LocationsController.swift */; };
 		51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4B827BD8BC4006702F9 /* ProfileController.swift */; };
 		51F0D4BB27BD8C04006702F9 /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */; };
@@ -37,7 +39,9 @@
 		512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringExt.swift; sourceTree = "<group>"; };
 		512D0B4627BFFA2A00C192B3 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		512D0B4827BFFC5700C192B3 /* DataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGenerator.swift; sourceTree = "<group>"; };
-		5186E67F27E10DDE007746D3 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		5186E67F27E10DDE007746D3 /* RouterMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterMain.swift; sourceTree = "<group>"; };
+		5186E6A527E21453007746D3 /* MenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemViewController.swift; sourceTree = "<group>"; };
+		5186E6A827E226F0007746D3 /* MenuItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemPresenter.swift; sourceTree = "<group>"; };
 		51F0D4B627BD8B00006702F9 /* LocationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsController.swift; sourceTree = "<group>"; };
 		51F0D4B827BD8BC4006702F9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		51F0D4BA27BD8C04006702F9 /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
@@ -84,7 +88,7 @@
 		5186E68127E1152A007746D3 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				5186E67F27E10DDE007746D3 /* AppRouter.swift */,
+				5186E67F27E10DDE007746D3 /* RouterMain.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -95,6 +99,15 @@
 				51F0D4D027BE86B4006702F9 /* AppBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		5186E6A727E226A0007746D3 /* MenuItemModel */ = {
+			isa = PBXGroup;
+			children = (
+				5186E6A827E226F0007746D3 /* MenuItemPresenter.swift */,
+				5186E6A527E21453007746D3 /* MenuItemViewController.swift */,
+			);
+			path = MenuItemModel;
 			sourceTree = "<group>";
 		};
 		51F0D4C427BE610F006702F9 /* ServiceManagers */ = {
@@ -214,6 +227,7 @@
 				5186E68227E1155F007746D3 /* Builder */,
 				51F0D4D427BE96C9006702F9 /* MainTabModule */,
 				51F0D4C627BE620A006702F9 /* MenuModule */,
+				5186E6A727E226A0007746D3 /* MenuItemModel */,
 				51F693BF27BC524E00D8A0FE /* Main.storyboard */,
 				51F693C227BC525100D8A0FE /* Assets.xcassets */,
 				51F693C427BC525100D8A0FE /* LaunchScreen.storyboard */,
@@ -298,6 +312,7 @@
 			files = (
 				51F693D627BD138C00D8A0FE /* CategoryPickerView.swift in Sources */,
 				51F0D4C927BE6245006702F9 /* SectionKind.swift in Sources */,
+				5186E6A627E21453007746D3 /* MenuItemViewController.swift in Sources */,
 				512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */,
 				51F693BE27BC524E00D8A0FE /* MenuController.swift in Sources */,
 				512D0B4927BFFC5800C192B3 /* DataGenerator.swift in Sources */,
@@ -306,9 +321,10 @@
 				51F693D427BC53EF00D8A0FE /* MenuItemCell.swift in Sources */,
 				51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */,
 				51F0D4C127BE5E1C006702F9 /* MenuPresenter.swift in Sources */,
-				5186E68027E10DDE007746D3 /* AppRouter.swift in Sources */,
+				5186E68027E10DDE007746D3 /* RouterMain.swift in Sources */,
 				51F693CE27BC534C00D8A0FE /* BanerCell.swift in Sources */,
 				51F0D4BB27BD8C04006702F9 /* PurchaseController.swift in Sources */,
+				5186E6A927E226F0007746D3 /* MenuItemPresenter.swift in Sources */,
 				51F693BC27BC524E00D8A0FE /* SceneDelegate.swift in Sources */,
 				51F0D4BF27BE5A78006702F9 /* MainTabPresenter.swift in Sources */,
 				51F0D4B727BD8B00006702F9 /* LocationsController.swift in Sources */,
@@ -470,6 +486,7 @@
 				INFOPLIST_FILE = DodoLayout/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,6 +514,7 @@
 				INFOPLIST_FILE = DodoLayout/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

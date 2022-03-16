@@ -114,7 +114,11 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
             collectionView.setContentOffset(CGPoint(x: 0, y: point - marginFromTopViews), animated: false)
             needsOffset = false
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let menuItem = presenter.menuItems[indexPath.row]
+        presenter.menuItemTapped(menuItem: menuItem)
     }
     
 }
