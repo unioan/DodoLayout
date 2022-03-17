@@ -17,7 +17,7 @@ protocol MenuItemPresenterProtocol: AnyObject  {
 final class MenuItemPresenter: MenuItemPresenterProtocol {
 
     weak var view: MenuItemViewProtocol?
-    let menuItem: MenuItem
+    var menuItem: MenuItem
     var router: RouterProtocol
     
     init(view: MenuItemViewProtocol, data: MenuItem, router: RouterProtocol) {

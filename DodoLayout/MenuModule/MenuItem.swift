@@ -16,4 +16,6 @@ struct MenuItem: CustomStringConvertible {
     let caption: String
     let price: Int
     let image: UIImage
+    var quantity: Int?
+    var menuItemState: MenuItemState?
 }

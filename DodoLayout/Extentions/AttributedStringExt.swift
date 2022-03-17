@@ -21,5 +21,17 @@ extension NSAttributedString {
         return attributedText
     }
     
+    static func setPriceForMenuItem(_ value: Int) -> NSAttributedString {
+        
+        let attributedText = NSMutableAttributedString(string: "\(value)",
+                                                       attributes: [.font: UIFont.boldSystemFont(ofSize: 18),
+                                                                    .foregroundColor: UIColor.systemPink])
+        
+        attributedText.append(NSAttributedString(string: " р",
+                                                 attributes: [.font: UIFont.boldSystemFont(ofSize: 18),
+                                                              .foregroundColor: UIColor.systemPink]))
+        return attributedText
+    }
+    
 }
 

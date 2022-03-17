@@ -47,6 +47,7 @@ final class MenuItemViewController: UIViewController {
         button.layer.cornerRadius = 7
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.systemPink.withAlphaComponent(0.4).cgColor
+        button.addTarget(self, action: #selector(priceButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -62,12 +63,36 @@ final class MenuItemViewController: UIViewController {
     }
     
     
+    // MARK: State
+    func setSomeState() {
+        presenter.menuItem.menuItemState = .some
+    }
+    
+    func updateState() {
+        guard let state = presenter.menuItem.menuItemState else { return }
+        switch state {
+        case .some:
+            priceButton.tintColor = .white
+            priceButton.backgroundColor = .systemPink
+        case .empty:
+            print("DEBUG: Hasn't set yet")
+        }
+    }
+    
+    
+    // MARK: Actions
+    @objc func priceButtonTapped() {
+        setSomeState()
+        updateState()
+    }
+    
+    
     // MARK: Helpers
     func configureWithData(menuItem: MenuItem) {
         ItemImageView.image = menuItem.image
         itemNameLabel.text = menuItem.itemName
         captionLabel.text = menuItem.caption
-        priceButton.setAttributedTitle(.setPrice(menuItem.price), for: .normal)
+        priceButton.setAttributedTitle(.setPriceForMenuItem(menuItem.price), for: .normal)
     }
     
     func setConstrains() {
@@ -94,8 +119,8 @@ final class MenuItemViewController: UIViewController {
         priceButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([priceButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
                                      priceButton.topAnchor.constraint(equalTo: captionLabel.bottomAnchor, constant: 16),
-                                     priceButton.widthAnchor.constraint(equalToConstant: 60),
-                                     priceButton.heightAnchor.constraint(equalToConstant: 30)])
+                                     priceButton.widthAnchor.constraint(equalToConstant: 100),
+                                     priceButton.heightAnchor.constraint(equalToConstant: 40)])
         
     }
     
