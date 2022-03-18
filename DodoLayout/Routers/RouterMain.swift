@@ -13,8 +13,9 @@ protocol RouterMain { // Требование ко всем роутерам (е
 }
 
 protocol RouterProtocol: RouterMain { // Роутер с конкретными конкретными контроллекрами
-    func initialViewController() -> UITabBarController
+    func initialViewController(_ menuItem: MenuItem?) -> UITabBarController
     func show(menuItem: MenuItem)
+    func getBackToMenuController(menuItem: MenuItem)
   }
 
 
@@ -28,10 +29,23 @@ final class Router: RouterProtocol {
         self.appBuilder = appBuilder
     }
     
-    func initialViewController() -> UITabBarController {
-        guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
-        navigationController = menuTabModule.viewControllers?.first as? UINavigationController
-        return menuTabModule
+    func initialViewController(_ menuItem: MenuItem? = nil) -> UITabBarController {
+        if menuItem == nil {
+            guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
+            navigationController = menuTabModule.viewControllers?.first as? UINavigationController
+            return menuTabModule
+        } else {
+            guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
+            navigationController = menuTabModule.viewControllers?.first as? UINavigationController
+            
+            guard let menuController = navigationController?.viewControllers.first as? MenuController,
+                  let menuItem = menuItem else { fatalError() }
+            
+            menuController.presenter.replaceMenuItem(with: menuItem)
+            
+            return menuTabModule
+        }
+        
     }
     
     func show(menuItem: MenuItem) {
@@ -39,6 +53,12 @@ final class Router: RouterProtocol {
             guard let menuItemViewController = appBuilder?.createMenuItemModule(menuItem: menuItem, router: self) else { return }
             navigationController.pushViewController(menuItemViewController, animated: true)
         }
+    }
+    
+    func getBackToMenuController(menuItem: MenuItem) {
+        print("Router menuItem STATE \(menuItem.menuItemState)")
+        guard let menuController = navigationController?.viewControllers.first as? MenuController else { return }
+        navigationController?.popToViewController(menuController, animated: true)
     }
     
 }

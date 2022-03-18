@@ -108,7 +108,7 @@
 			children = (
 				5186E6AA27E31B55007746D3 /* Presenter */,
 				5186E6AB27E31B62007746D3 /* Controller */,
-				5186E6AE27E320E8007746D3 /* MenuItemState.swift */,
+				5186E6B127E3B00E007746D3 /* Model */,
 			);
 			path = MenuItemModel;
 			sourceTree = "<group>";
@@ -127,6 +127,14 @@
 				5186E6A527E21453007746D3 /* MenuItemViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		5186E6B127E3B00E007746D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5186E6AE27E320E8007746D3 /* MenuItemState.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		51F0D4C427BE610F006702F9 /* ServiceManagers */ = {

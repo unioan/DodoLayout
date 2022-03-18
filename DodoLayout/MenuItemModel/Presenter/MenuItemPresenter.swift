@@ -26,6 +26,13 @@ final class MenuItemPresenter: MenuItemPresenterProtocol {
         self.router = router
     }
     
+    func changeMenuItemState(on menuItemState: MenuItemState) {
+        self.menuItem.menuItemState = menuItemState
+    }
+    
+    func getBackToMenuController() {
+        router.getBackToMenuController(menuItem: menuItem) // Successfully changes menuItem state
+    }
     
     
 }

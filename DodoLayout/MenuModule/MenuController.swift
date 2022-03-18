@@ -9,6 +9,7 @@ import UIKit
 
 final class MenuController: UIViewController {
     
+    
     // MARK: Properties
     var presenter: MenuPresenter!
     var collectionView: UICollectionView!
@@ -19,9 +20,10 @@ final class MenuController: UIViewController {
     let cityPickerButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(title: "Москва", style: .plain, target: self, action: nil)
         barButton.setTitleTextAttributes([.font: UIFont(name: "Helvetica", size: 16)!,
-                                                 .foregroundColor: UIColor.black], for: .normal)
+                                          .foregroundColor: UIColor.black], for: .normal)
         return barButton
     }()
+    
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -33,6 +35,11 @@ final class MenuController: UIViewController {
         collectionView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+
     
     // MARK: Helpers
     func configureCollectionView() {
@@ -47,7 +54,6 @@ final class MenuController: UIViewController {
     }
     
 }
-
 
 
 // MARK: - UICollectionViewDataSource
@@ -72,7 +78,6 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: CellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let itemIndex = indexPath.row
         guard let sectionKind = SectionKind(rawValue: indexPath.section) else { fatalError() }
         
         switch sectionKind {
@@ -82,15 +87,14 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         case .item:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuItemCell.reuseIdentifier, for: indexPath) as! MenuItemCell
             
-            cell.foodKind = presenter.menuItems[itemIndex].foodKind
-            cell.ItemImageView.image = presenter.menuItems[itemIndex].image
-            cell.itemNameLabel.text = presenter.menuItems[itemIndex].itemName
-            cell.captionLabel.text = presenter.menuItems[itemIndex].caption
-            cell.priceButton.setAttributedTitle(.setPrice(presenter.menuItems[itemIndex].price), for: .normal)
-        
+            let menuItem = presenter.menuItems[indexPath.row]
+    
+            cell.menuItem = menuItem
+            cell.menuItem.menuItemIndex = indexPath.row
+            cell.delegate = self
+            
             return cell
         }
-        
         
     }
     
@@ -118,9 +122,18 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let menuItem = presenter.menuItems[indexPath.row]
-        presenter.menuItemTapped(menuItem: menuItem)
+        presenter.router?.show(menuItem: menuItem)
     }
     
+}
+
+// MARK: - MenuItemCellProtocol
+extension MenuController: MenuItemCellProtocol {
+    func priceButtonTapped(menuItem: MenuItem) {
+        guard let menuItemIndex = menuItem.menuItemIndex else { return }
+        presenter.menuItems[menuItemIndex] = menuItem
+        presenter.replaceMenuItem(with: menuItem)
+    }
 }
 
 // MARK: - CategoryPickerViewDelegate (Header)
@@ -143,5 +156,7 @@ extension MenuController: CategoryPickerViewDelegate {
 }
 
 // MARK: - MenuViewProtocol
-extension MenuController: MenuViewProtocol {
-}
+extension MenuController: MenuViewProtocol {}
+
+
+

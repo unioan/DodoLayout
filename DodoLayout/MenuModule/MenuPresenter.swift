@@ -19,7 +19,7 @@ protocol MenuViewPresenterProtocol: AnyObject {
 class MenuPresenter: MenuViewPresenterProtocol {
 
     weak var view: MenuViewProtocol?
-    let menuItems: [MenuItem]
+    var menuItems: [MenuItem]
     var router: RouterProtocol?
     
     required init(view: MenuViewProtocol, data: [MenuItem], router: RouterProtocol) {
@@ -30,6 +30,11 @@ class MenuPresenter: MenuViewPresenterProtocol {
     
     func menuItemTapped(menuItem: MenuItem) {
         router?.show(menuItem: menuItem)
+    }
+    
+    func replaceMenuItem(with menuItem: MenuItem) {
+        guard let menuItemIndex = menuItem.menuItemIndex else { return }
+        menuItems[menuItemIndex] = menuItem
     }
     
     func foodKindSelected(_ foodKind: FoodKind) {

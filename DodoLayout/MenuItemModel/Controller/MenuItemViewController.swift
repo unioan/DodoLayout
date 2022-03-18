@@ -57,33 +57,42 @@ final class MenuItemViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .black // Sets backButton tintColor
-        
         setConstrains()
         configureWithData(menuItem: presenter.menuItem)
+        setAppearence()
     }
     
-    
-    // MARK: State
-    func setSomeState() {
-        presenter.menuItem.menuItemState = .some
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter.getBackToMenuController()
     }
-    
-    func updateState() {
-        guard let state = presenter.menuItem.menuItemState else { return }
-        switch state {
+
+    // MARK: State and Apearence
+    func changeState() {
+        switch presenter.menuItem.menuItemState {
+        case .some:
+            presenter.changeMenuItemState(on: .empty)
+        case .empty:
+            presenter.changeMenuItemState(on: .some)
+        }
+    }    
+        
+    func setAppearence() {
+        switch presenter.menuItem.menuItemState {
         case .some:
             priceButton.tintColor = .white
             priceButton.backgroundColor = .systemPink
         case .empty:
-            print("DEBUG: Hasn't set yet")
+            priceButton.tintColor = .systemPink
+            priceButton.backgroundColor = .white
         }
     }
     
     
     // MARK: Actions
     @objc func priceButtonTapped() {
-        setSomeState()
-        updateState()
+        changeState()
+        setAppearence()
     }
     
     

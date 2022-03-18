@@ -90,9 +90,7 @@ extension CategoryPickerView: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         guard let foodKind = FoodKind(rawValue: indexPath.row) else { fatalError() }
-        
         headerDelegate?.categoryChosen(foodKind)
-        //print("DEBUG: TAPPED in Header view \(foodCategory) cell index \(indexPath.row)!")
     }
     
     
