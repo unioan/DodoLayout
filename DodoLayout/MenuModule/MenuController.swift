@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MenuControllerScrolledKindProtocol: AnyObject {
+    func scrolledKind(_ foodKind: FoodKind?)
+}
+
 final class MenuController: UIViewController {
     
     
@@ -17,6 +21,10 @@ final class MenuController: UIViewController {
     var chosenMenuItemIndex: IndexPath?
     var needsOffset = false
     
+    weak var scrolledKindDelegate: MenuControllerScrolledKindProtocol?
+    var scrolledItem: FoodKind? {
+        didSet { scrolledKindDelegate?.scrolledKind(scrolledItem)}
+    }
     
     let cityPickerButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(title: "Москва", style: .plain, target: self, action: nil)
@@ -104,9 +112,9 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CategoryPickerView.reuseIdentifier, for: indexPath) as! CategoryPickerView
         header.headerDelegate = self
+        scrolledKindDelegate = header
         return header
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let chosenMenuItemIndex = chosenMenuItemIndex,
@@ -123,9 +131,9 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
             collectionView.setContentOffset(CGPoint(x: 0, y: point - marginFromTopViews), animated: false)
             needsOffset = false
         } else if chosenMenuItemIndex != collectionView.indexPath(for: menuCell) { // Здесь будет определяться какая категория будет выбрана
+            scrolledItem = menuCell.foodKind // Сохранит текущий тип
             
-            
-            //print("Cell title name \(menuCell.itemNameLabel) cell index \(indexPath)")
+            //print("Cell kind \(scrolledItem) cell index \(indexPath)")
         }
         
     }
@@ -149,6 +157,7 @@ extension MenuController: MenuItemCellProtocol {
 
 // MARK: - CategoryPickerViewDelegate (Header)
 extension MenuController: CategoryPickerViewDelegate {
+    
     func categoryChosen(_ foodKind: FoodKind) {
         let chosenItemIndexInArray = presenter.menuItems.firstIndex { $0.foodKind == foodKind }
         

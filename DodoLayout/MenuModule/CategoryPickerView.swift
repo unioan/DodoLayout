@@ -21,6 +21,7 @@ final class CategoryPickerView: UICollectionReusableView {
     var categoriesCollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: LayoutManger.createCategoryControllerCollectionLayout())
     
     var initialySelectedButton = true
+    var scrolledFoodType: FoodKind?
     
     // MARK: Life Cycle
     override init(frame: CGRect) {
@@ -37,6 +38,15 @@ final class CategoryPickerView: UICollectionReusableView {
     
     
     // MARK: Helpers
+    private func selectScrolledFoodKind() {
+        guard let scrolledFoodType = scrolledFoodType else { return }
+        let index = IndexPath(row: scrolledFoodType.rawValue, section: 0)
+        categoriesCollectionView.cellForItem(at: index)
+        categoriesCollectionView.selectItem(at: index, animated: true, scrollPosition: .centeredHorizontally)
+        print("HI! It is CategoryPickerView selectScrolledFoodKind METHOD scrolled type \(scrolledFoodType)")
+    }
+    
+    
     private func setupConstraints() {
     
         addSubview(categoriesCollectionView)
@@ -101,5 +111,15 @@ extension CategoryPickerView: UICollectionViewDelegate, UICollectionViewDataSour
         headerDelegate?.categoryChosen(foodKind)
     }
     
+    
+}
+
+
+extension CategoryPickerView: MenuControllerScrolledKindProtocol {
+    func scrolledKind(_ foodKind: FoodKind?) {
+        scrolledFoodType = foodKind
+        selectScrolledFoodKind()
+        //print("HI! It is CategoryPickerView \(foodKind)")
+    }
     
 }
