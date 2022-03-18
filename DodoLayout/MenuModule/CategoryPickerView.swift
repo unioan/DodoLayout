@@ -80,6 +80,14 @@ extension CategoryPickerView: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    // Scrolls category item section...
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let cell = collectionView.cellForItem(at: indexPath) as! CategoryCell
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true) // тоже самое при пролистывании menuController
+        print(cell.textLabel.text)
+        return true
+    }
+    
     // MARK: ItemSelected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

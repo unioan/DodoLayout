@@ -124,7 +124,8 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
             needsOffset = false
         } else if chosenMenuItemIndex != collectionView.indexPath(for: menuCell) { // Здесь будет определяться какая категория будет выбрана
             
-            print("Cell title name \(menuCell.itemNameLabel) cell index \(indexPath)")
+            
+            //print("Cell title name \(menuCell.itemNameLabel) cell index \(indexPath)")
         }
         
     }
