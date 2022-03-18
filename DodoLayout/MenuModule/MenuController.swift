@@ -17,6 +17,7 @@ final class MenuController: UIViewController {
     var chosenMenuItemIndex: IndexPath?
     var needsOffset = false
     
+    
     let cityPickerButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(title: "Москва", style: .plain, target: self, action: nil)
         barButton.setTitleTextAttributes([.font: UIFont(name: "Helvetica", size: 16)!,
@@ -106,22 +107,31 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         return header
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let chosenMenuItemIndex = chosenMenuItemIndex else { return }
+        guard let chosenMenuItemIndex = chosenMenuItemIndex,
+              let menuCell = cell as? MenuItemCell else {
+                  return chosenMenuItemIndex = IndexPath(row: 0, section: 1)
+              }
         
         if chosenMenuItemIndex == indexPath && chosenMenuItemIndex == IndexPath(row: 0, section: SectionKind.item.rawValue) {
             self.needsOffset = false
             self.chosenMenuItemIndex = nil
         } else if chosenMenuItemIndex == indexPath && needsOffset {
             let marginFromTopViews = view.safeAreaInsets.top + 60
-            let point = cell.frame.origin.y
+            let point = menuCell.frame.origin.y
             collectionView.setContentOffset(CGPoint(x: 0, y: point - marginFromTopViews), animated: false)
             needsOffset = false
+        } else if chosenMenuItemIndex != collectionView.indexPath(for: menuCell) { // Здесь будет определяться какая категория будет выбрана
+            
+            print("Cell title name \(menuCell.itemNameLabel) cell index \(indexPath)")
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let menuItem = presenter.menuItems[indexPath.row]
+        var menuItem = presenter.menuItems[indexPath.row]
+        menuItem.menuItemIndex = indexPath.row
         presenter.router?.show(menuItem: menuItem)
     }
     
@@ -156,7 +166,11 @@ extension MenuController: CategoryPickerViewDelegate {
 }
 
 // MARK: - MenuViewProtocol
-extension MenuController: MenuViewProtocol {}
+extension MenuController: MenuViewProtocol {
+    func updateCollectionView() {
+        collectionView.reloadData()
+    }
+}
 
 
 

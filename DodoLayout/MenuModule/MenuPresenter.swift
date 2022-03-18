@@ -8,11 +8,11 @@
 import Foundation
 
 protocol MenuViewProtocol: AnyObject {
+    func updateCollectionView()
 }
 
 protocol MenuViewPresenterProtocol: AnyObject {
     init(view: MenuViewProtocol, data: [MenuItem], router: RouterProtocol)
-    func menuItemTapped(menuItem: MenuItem)
 }
 
 
@@ -28,13 +28,13 @@ class MenuPresenter: MenuViewPresenterProtocol {
         self.router = router
     }
     
-    func menuItemTapped(menuItem: MenuItem) {
-        router?.show(menuItem: menuItem)
-    }
-    
     func replaceMenuItem(with menuItem: MenuItem) {
         guard let menuItemIndex = menuItem.menuItemIndex else { return }
         menuItems[menuItemIndex] = menuItem
+    }
+    
+    func updateCollectionView() {
+        view?.updateCollectionView()
     }
     
     func foodKindSelected(_ foodKind: FoodKind) {

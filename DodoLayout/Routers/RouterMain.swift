@@ -30,22 +30,9 @@ final class Router: RouterProtocol {
     }
     
     func initialViewController(_ menuItem: MenuItem? = nil) -> UITabBarController {
-        if menuItem == nil {
             guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
             navigationController = menuTabModule.viewControllers?.first as? UINavigationController
             return menuTabModule
-        } else {
-            guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
-            navigationController = menuTabModule.viewControllers?.first as? UINavigationController
-            
-            guard let menuController = navigationController?.viewControllers.first as? MenuController,
-                  let menuItem = menuItem else { fatalError() }
-            
-            menuController.presenter.replaceMenuItem(with: menuItem)
-            
-            return menuTabModule
-        }
-        
     }
     
     func show(menuItem: MenuItem) {
@@ -58,7 +45,9 @@ final class Router: RouterProtocol {
     func getBackToMenuController(menuItem: MenuItem) {
         print("Router menuItem STATE \(menuItem.menuItemState)")
         guard let menuController = navigationController?.viewControllers.first as? MenuController else { return }
-        navigationController?.popToViewController(menuController, animated: true)
+        
+        menuController.presenter.replaceMenuItem(with: menuItem)
+        menuController.presenter.updateCollectionView()
     }
     
 }
