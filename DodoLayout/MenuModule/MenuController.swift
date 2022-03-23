@@ -21,8 +21,9 @@ final class MenuController: UIViewController {
     var chosenMenuItemIndex: IndexPath?
     var needsOffset = false
     
+    var scrolledCount = 0
     weak var scrolledKindDelegate: MenuControllerScrolledKindProtocol?
-    var scrolledItem: FoodKind? {
+    var scrolledItem: FoodKind = .pizza {
         didSet { scrolledKindDelegate?.scrolledKind(scrolledItem)}
     }
     
@@ -116,6 +117,10 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
         return header
     }
     
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // Try to use it when configure
+    }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let chosenMenuItemIndex = chosenMenuItemIndex,
               let menuCell = cell as? MenuItemCell else {
@@ -148,6 +153,10 @@ extension MenuController: UICollectionViewDataSource, UICollectionViewDelegate {
 
 // MARK: - MenuItemCellProtocol
 extension MenuController: MenuItemCellProtocol {
+    func updateCartBudge(menuItem: MenuItem) {
+        presenter.updateChosenItems(with: menuItem)
+    }
+    
     func priceButtonTapped(menuItem: MenuItem) {
         guard let menuItemIndex = menuItem.menuItemIndex else { return }
         presenter.menuItems[menuItemIndex] = menuItem

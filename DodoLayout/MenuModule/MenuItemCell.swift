@@ -9,6 +9,7 @@ import UIKit
 
 protocol MenuItemCellProtocol: AnyObject {
     func priceButtonTapped(menuItem: MenuItem)
+    func updateCartBudge(menuItem: MenuItem)
 }
 
 final class MenuItemCell: UICollectionViewCell {
@@ -77,6 +78,7 @@ final class MenuItemCell: UICollectionViewCell {
         changeState()
         setAppearence()
         delegate?.priceButtonTapped(menuItem: menuItem)
+        delegate?.updateCartBudge(menuItem: menuItem)
     }
     
     

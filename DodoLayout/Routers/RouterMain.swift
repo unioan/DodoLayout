@@ -8,6 +8,7 @@
 import UIKit
 
 protocol RouterMain { // Требование ко всем роутерам (если нужно будет создать какой-то отдельный роутер)
+    var tabBarController: UITabBarController? { get set }
     var navigationController: UINavigationController? { get set }
     var appBuilder: AppBuilder? { get set }
 }
@@ -16,12 +17,14 @@ protocol RouterProtocol: RouterMain { // Роутер с конкретными 
     func initialViewController(_ menuItem: MenuItem?) -> UITabBarController
     func show(menuItem: MenuItem)
     func getBackToMenuController(menuItem: MenuItem)
-  }
+    func sendChosenItemToMenuPresenter(menuItem: MenuItem) 
+}
 
 
 
 final class Router: RouterProtocol {
     
+    var tabBarController: UITabBarController?
     var navigationController: UINavigationController?
     var appBuilder: AppBuilder?
     
@@ -30,9 +33,10 @@ final class Router: RouterProtocol {
     }
     
     func initialViewController(_ menuItem: MenuItem? = nil) -> UITabBarController {
-            guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
-            navigationController = menuTabModule.viewControllers?.first as? UINavigationController
-            return menuTabModule
+        guard let menuTabModule = appBuilder?.createMainTabModule(router: self) else { return UITabBarController() }
+        tabBarController = menuTabModule
+        navigationController = menuTabModule.viewControllers?.first as? UINavigationController
+        return menuTabModule
     }
     
     func show(menuItem: MenuItem) {
@@ -48,6 +52,11 @@ final class Router: RouterProtocol {
         
         menuController.presenter.replaceMenuItem(with: menuItem)
         menuController.presenter.updateCollectionView()
+    }
+    
+    func sendChosenItemToMenuPresenter(menuItem: MenuItem) {
+        guard let menuController = navigationController?.viewControllers.first as? MenuController else { return }
+        menuController.presenter.updateChosenItems(with: menuItem)
     }
     
 }

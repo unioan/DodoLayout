@@ -93,6 +93,7 @@ final class MenuItemViewController: UIViewController {
     @objc func priceButtonTapped() {
         changeState()
         setAppearence()
+        presenter.sendChosenItemToRouter()
     }
     
     

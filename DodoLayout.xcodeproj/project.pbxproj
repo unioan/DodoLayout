@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		510957D927E8DC880007A9F1 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510957D827E8DC880007A9F1 /* CartItem.swift */; };
 		512D0B4327BFC16300C192B3 /* AttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */; };
 		512D0B4727BFFA2A00C192B3 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4627BFFA2A00C192B3 /* MenuItem.swift */; };
 		512D0B4927BFFC5800C192B3 /* DataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512D0B4827BFFC5700C192B3 /* DataGenerator.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		510957D827E8DC880007A9F1 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		512D0B4227BFC16300C192B3 /* AttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringExt.swift; sourceTree = "<group>"; };
 		512D0B4627BFFA2A00C192B3 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		512D0B4827BFFC5700C192B3 /* DataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGenerator.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				51F0D4DC27BEE32D006702F9 /* FoodKind.swift */,
 				51F0D4C827BE6245006702F9 /* SectionKind.swift */,
 				512D0B4627BFFA2A00C192B3 /* MenuItem.swift */,
+				510957D827E8DC880007A9F1 /* CartItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				512D0B4927BFFC5800C192B3 /* DataGenerator.swift in Sources */,
 				51F693BA27BC524E00D8A0FE /* AppDelegate.swift in Sources */,
 				51F0D4C327BE60EF006702F9 /* LayoutManger.swift in Sources */,
+				510957D927E8DC880007A9F1 /* CartItem.swift in Sources */,
 				51F693D427BC53EF00D8A0FE /* MenuItemCell.swift in Sources */,
 				51F0D4B927BD8BC4006702F9 /* ProfileController.swift in Sources */,
 				51F0D4C127BE5E1C006702F9 /* MenuPresenter.swift in Sources */,

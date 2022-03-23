@@ -34,5 +34,8 @@ final class MenuItemPresenter: MenuItemPresenterProtocol {
         router.getBackToMenuController(menuItem: menuItem) // Successfully changes menuItem state
     }
     
+    func sendChosenItemToRouter() {
+        router.sendChosenItemToMenuPresenter(menuItem: menuItem)
+    }
     
 }
