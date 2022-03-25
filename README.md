@@ -1,9 +1,10 @@
 # DodoLayout MVP
 The UI is inspired by the app belonging to one of the best pizza makers☺️
+
 The app have been designed to resemble DodoPizza app. 
 
 ## Objectives
-- to design UI of the first screen to have resemblence DodoPizza app;
+- to design UI of the first screen to have resemblence with DodoPizza app;
 - to make section with food categories stick to navigation bar;
 - to scroll catagory view until the first item from the selected category appears in the upper side of the screen;
 - to make buttons in the section with food categories;
