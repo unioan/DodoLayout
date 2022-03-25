@@ -1,4 +1,5 @@
 # DodoLayout MVP
+The UI is inspired by the app belonging to one of the best pizza makers☺️
 The app have been designed to resemble DodoPizza app. 
 
 ## Objectives
